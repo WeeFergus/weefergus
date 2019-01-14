@@ -2,25 +2,25 @@ module.exports = function(grunt) {
 
     grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),  /** Where the package file is that points to all the modules **/
-		
+
 		/** Sass **/
-		sass: {  
+		sass: {
 		  dev: {
 		    options: {
 		      style: 'expanded',
-		      
+
 		    },
 		    files: {
-		      'compiled/style-human.css': 'scss/style.scss'
+		      'wp-content/themes/<%= pkg.name %>/compiled/style-human.css': 'wp-content/themes/<%= pkg.name %>/scss/style.scss'
 		  }
 		},
-		
+
 		dist: {
 			options: {
 				style: 'compressed',
 			},
 			files: {
-				'compiled/style.css': 'scss/style.scss'
+				'wp-content/themes/<%= pkg.name %>/style.css': 'wp-content/themes/<%= pkg.name %>/scss/style.scss'
 			}
 		}
 	},
@@ -43,25 +43,25 @@ module.exports = function(grunt) {
 	  	multiple_files: {
 		  	expand: true,
 		  	flatten: true,
-		  	src: 'compiled/style.css',
+		  	src: 'wp-content/themes/<%= pkg.name %>compiled/style.css',
 		  	dest: ''
 	  		}
 	  	},
-	  	
+
 	  	/** Watch **/
 		watch: {
 			css: {
 				files: '**/*.scss',  /** Whenever something happens to a file with a .scss extension, do the following task **/
-				tasks: ['sass','autoprefixer'] 
+				tasks: ['sass','autoprefixer']
 			}
 		}
 
 	});
-	
+
 	/** Load the task runners **/
-	
+
 	grunt.loadNpmTasks('grunt-contrib-sass');
-	grunt.loadNpmTasks('grunt-contrib-watch'); 
-	grunt.loadNpmTasks('grunt-autoprefixer');  
+	grunt.loadNpmTasks('grunt-contrib-watch');
+	grunt.loadNpmTasks('grunt-autoprefixer');
 	grunt.registerTask('default',['watch']);  /** Sets the default 'Grunt" task to watch **/
 }
