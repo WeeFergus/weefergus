@@ -22,7 +22,7 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 
 
 
-@import "variables-site/variables";
+@import "variables/variables";
 @import "mixins/mixins-master";
 
 
@@ -82,5 +82,9 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 // Content
 @import "site/gdpr";
 @import "site/accordion";
+@import "site/home";
+@import "site/modal";
+@import "site/hover";
+@import "site/slick";
 
 
