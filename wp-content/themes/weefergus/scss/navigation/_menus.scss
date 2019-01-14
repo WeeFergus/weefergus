@@ -1,0 +1,204 @@
+//The burger
+
+#nav-toggle {
+	position: absolute;
+	right: 25px;
+	top: 75px;
+	cursor: pointer;
+	width: $size__burger-bkgnd;
+    height: $size__burger-bkgnd;
+    display: flex;
+    align-items: center;
+	background: $color__burger-bkgnd;
+
+	span,
+	span:before,
+	span:after {
+		cursor: pointer;
+		border-radius: 1px;
+		height: 3px;
+		width: 35px;
+		background: $color__burger;
+		position: absolute;
+		display: block;
+		content: '';
+		transition: all 300ms ease-in-out;
+	}
+
+	span {
+		    left: 17px;
+	}
+
+	span:before {
+		top: -10px;
+	}
+
+	span:after {
+		bottom: -10px;
+	}
+
+	&.active span {
+		background-color: transparent;
+
+		&:before,
+		&:after {
+			top: 0;
+		}
+
+		&:before {
+			transform: rotate(45deg);
+		}
+
+		&:after {
+			transform: rotate(-45deg);
+		}
+	}
+
+	@include min-nav-breakpoint {
+		display: none;
+	}
+}
+
+.main-navigation {
+	clear: both;
+	display: block;
+	float: left;
+	width: 100%;
+
+	ul {
+		display: none;
+		list-style: none;
+		margin: 0;
+		padding-left: 0;
+
+		@include max-nav-breakpoint {
+			background: $blue;
+		}
+
+		ul {
+			box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
+			float: left;
+			position: absolute;
+			top: 100%;
+			left: -999em;
+			z-index: 99999;
+			background: $color__submenu_bkgnd;
+			display: block;
+
+			@include max-nav-breakpoint {
+				width: 100%;
+				display: none;
+			}
+
+			ul {
+				left: -999em;
+				top: 0;
+				background: #BADA55;
+			}
+
+			li {
+				&:hover > ul,
+				&.focus > ul {
+					left: 100%;
+				}
+			}
+
+			a {
+				color: $color__nav-font;
+				width: 200px;
+				@include max-nav-breakpoint {
+					width: 100%;
+				}
+			}
+
+			:hover > a,
+			.focus > a {
+			}
+
+			a:hover,
+			a.focus {
+			}
+		}
+
+		li:hover > ul,
+		li.focus > ul {
+			left: auto;
+		}
+	}
+
+	li {
+		position: relative;
+
+		&:hover > a,
+		&.focus > a {
+		}
+	}
+
+	a {
+		display: block;
+		text-decoration: none;
+		color: $color__nav-font;
+		@include max-nav-breakpoint {
+			padding: 10px 0 10px 15px;
+		}
+		&:hover {
+			background: $dkblue;
+		}
+	}
+
+	.current_page_item > a,
+	.current-menu-item > a,
+	.current_page_ancestor > a,
+	.current-menu-ancestor > a {
+	}
+}
+
+.main-navigation.toggled ul {
+	display: flex;
+	flex-direction: column;
+}
+
+	@include min-nav-breakpoint {
+	.menu-toggle {
+		display: none;
+	}
+	.main-navigation ul {
+		display: flex;
+		justify-content: space-around;
+
+		li {
+			padding: 0;
+
+			a {
+				color: $color__nav-font;
+				text-decoration: none;
+				padding: 15px 25px;
+
+				&:hover {
+				background: $dkblue;
+				}
+			}
+		}
+	}
+}
+
+.comment-navigation,
+.posts-navigation,
+.post-navigation {
+
+	.site-main & {
+		margin: 0 0 1.5em;
+		overflow: hidden;
+	}
+
+	.nav-previous {
+		float: left;
+		width: 50%;
+	}
+
+	.nav-next {
+		float: right;
+		text-align: right;
+		width: 50%;
+	}
+}
